@@ -5,10 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.expandablecardview.MainActivity">
+    tools:context=".activity.MainActivity">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_main"
+        android:id="@+id/rv_list_main"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:padding="8dp"
@@ -17,4 +17,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem=""/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_add_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:src="@drawable/ic_add_black_24dp"
+        app:backgroundTint="@android:color/holo_blue_light"
+        app:layout_constraintBottom_toBottomOf="@+id/rv_list_main"
+        app:layout_constraintEnd_toEndOf="@+id/rv_list_main"
+        tools:ignore="MissingConstraints"/>
 </android.support.constraint.ConstraintLayout>

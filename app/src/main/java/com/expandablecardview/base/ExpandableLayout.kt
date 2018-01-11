@@ -31,7 +31,6 @@ class ExpandableLayout : LinearLayout {
     private val parentScrollDistance: Int
         get() {
             var distance = 0
-
             if (mScrolledParent == null) {
                 return distance
             }
@@ -67,7 +66,6 @@ class ExpandableLayout : LinearLayout {
         mSettings = Settings()
         if (attrs != null) {
             val typedArray = context.obtainStyledAttributes(attrs, R.styleable.ExpandableLayout)
-            mSettings!!.expandDuration = typedArray.getInt(R.styleable.ExpandableLayout_expDuration, Settings.EXPAND_DURATION)
             mSettings!!.expandWithParentScroll = typedArray.getBoolean(R.styleable.ExpandableLayout_expWithParentScroll, false)
             mSettings!!.expandScrollTogether = typedArray.getBoolean(R.styleable.ExpandableLayout_expExpandScrollTogether, true)
             typedArray.recycle()
@@ -129,10 +127,9 @@ class ExpandableLayout : LinearLayout {
         })
 
         mExpandState = if (mExpandState == ExpandState.EXPANDED) ExpandState.CLOSING else ExpandState.EXPANDING
-        mExpandAnimator!!.duration = mSettings!!.expandDuration.toLong()
         if (mExpandState == ExpandState.EXPANDING && mSettings!!.expandWithParentScroll && distance > 0) {
 
-            mParentAnimator = Utils.createParentAnimator(mScrolledParent!!.scrolledView!!, distance, mSettings!!.expandDuration)
+            mParentAnimator = Utils.createParentAnimator(mScrolledParent!!.scrolledView!!, distance)
 
             mExpandScrollAnimotorSet = AnimatorSet()
 
@@ -193,10 +190,6 @@ class ExpandableLayout : LinearLayout {
 
     fun setExpandWithParentScroll(expandWithParentScroll: Boolean) {
         this.mSettings!!.expandWithParentScroll = expandWithParentScroll
-    }
-
-    fun setExpandDuration(expandDuration: Int) {
-        this.mSettings!!.expandDuration = expandDuration
     }
 
     override fun onDetachedFromWindow() {

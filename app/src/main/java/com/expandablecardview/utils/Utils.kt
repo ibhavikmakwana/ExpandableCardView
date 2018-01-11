@@ -30,7 +30,7 @@ internal object Utils {
         return null
     }
 
-    fun createParentAnimator(parent: View, distance: Int, duration: Int): ValueAnimator {
+    fun createParentAnimator(parent: View, distance: Int): ValueAnimator {
 
         val parentAnimator = ValueAnimator.ofInt(0, distance)
 
@@ -43,7 +43,6 @@ internal object Utils {
                 parent.scrollBy(0, dy)
             }
         })
-        parentAnimator.duration = duration.toLong()
 
         return parentAnimator
     }
